@@ -5,19 +5,12 @@ from os import listdir
 import pathlib
 import time
 import calendar
+from cryptography.fernet import Fernet
+
 
 #Paste web3.storage token
 w3 = w3storage.API(token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDREQTVhNUREMGQxNjhiOGQzNjNCRDEzMjc5MDZERWE5NzRFQjU0MmUiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzAzOTQ0NjA1MjAsIm5hbWUiOiJ0bXNkZXNrdG9wIn0.DbezhIwSY8tNkH2hsHM_cYwf-pc3g5W8XxoPYb3VneA')
 cidlist = {} # initialize dict
-
-
-
-
-#ENCRYPT FILE BEFORE UPLOAD ?????????????????????????
-
-
-
-
 
 
 #ITERATE WITHIN FOLDER AND UPLOAD ALL FILES
@@ -27,6 +20,7 @@ folder_dir = current_dir + '\data'
 
 for files in os.listdir(folder_dir):
     imgpath = current_dir+'\data'+'\\' +files # jump to data folder and fetch image
+
     cid = w3.post_upload((open(imgpath, 'rb'))) #upload to web3 storage
     cidlist[cid] = files #write to dict
         
