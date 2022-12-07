@@ -1,1 +1,1 @@
-# TMS (Truatless Mining Survey)
+# TMS (Trustless Mining Survey)
