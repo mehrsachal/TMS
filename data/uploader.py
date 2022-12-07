@@ -12,23 +12,15 @@ cidlist = {} # initialize dict
 
 
 
-
-#ENCRYPT FILE BEFORE UPLOAD ?????????????????????????
-
-
-
-
-
-
 #ITERATE WITHIN FOLDER AND UPLOAD ALL FILES
 #Upload & Write to Dict
 current_dir = str(pathlib.Path().absolute()) #Current Directory 
 folder_dir = current_dir + '\data'
 
-for files in os.listdir(folder_dir):
-    imgpath = current_dir+'\data'+'\\' +files # jump to data folder and fetch image
+for images in os.listdir(folder_dir):
+    imgpath = current_dir+'\data'+'\\' +images # jump to data folder and fetch image
     cid = w3.post_upload((open(imgpath, 'rb'))) #upload to web3 storage
-    cidlist[cid] = files #write to dict
+    cidlist[cid] = images #write to dict
         
 
 #CONVERT TO JSON
