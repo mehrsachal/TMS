@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.7.0;
 
 contract CIDHashStorage {
@@ -12,11 +13,14 @@ contract CIDHashStorage {
 
     // Add the provided CID hash to the mapping at the next available index.
     cidHashes[length] = _cidHash;
+    // print a message saying done
+    return "Done";
   }
 
   // Function to retrieve a CID hash from the mapping.
   function getCIDHash(uint256 _index) public view returns (bytes32) {
     // Return the CID hash at the specified index in the mapping.
     return cidHashes[_index];
+
   }
 }
