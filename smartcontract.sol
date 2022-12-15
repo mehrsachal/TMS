@@ -1,26 +1,22 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.7.0;
+pragma solidity ^0.6.0;
 
-contract CIDHashStorage {
+// import the web3.storage interface
+import "https://github.com/web3-interfaces/storage/storage.sol";
 
-  // Define a mapping to hold the CID hashes.
-  mapping(uint256 => bytes32) public cidHashes;
+// define a contract that implements the web3.storage interface
+contract IPFSStorage is web3.storage {
+    // define a mapping to store the IPFS hashes
+    mapping (bytes32 => bytes32) public hashes;
 
-  // Function to add a CID hash to the mapping.
-  function addCIDHash(bytes32 _cidHash) public {
-    // Get the current number of hashes in the mapping.
-    uint256 length = cidHashes.length;
+    // function to add a new IPFS hash to the mapping
+    function addHash(bytes32 key, bytes32 value) public {
+        // set the value at the given key in the mapping
+        hashes[key] = value;
+    }
 
-    // Add the provided CID hash to the mapping at the next available index.
-    cidHashes[length] = _cidHash;
-    // print a message saying done
-    return "Done";
-  }
-
-  // Function to retrieve a CID hash from the mapping.
-  function getCIDHash(uint256 _index) public view returns (bytes32) {
-    // Return the CID hash at the specified index in the mapping.
-    return cidHashes[_index];
-
-  }
+    // function to retrieve an IPFS hash from the mapping
+    function getHash(bytes32 key) public view returns (bytes32) {
+        // return the value at the given key in the mapping
+        return hashes[key];
+    }
 }
