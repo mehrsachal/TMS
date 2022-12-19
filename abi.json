@@ -2,17 +2,17 @@
 	{
 		"inputs": [
 			{
-				"internalType": "bytes32",
+				"internalType": "string",
 				"name": "key",
-				"type": "bytes32"
+				"type": "string"
 			},
 			{
-				"internalType": "bytes32",
+				"internalType": "string",
 				"name": "value",
-				"type": "bytes32"
+				"type": "string"
 			}
 		],
-		"name": "addHash",
+		"name": "sendHash",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -20,17 +20,17 @@
 	{
 		"inputs": [
 			{
-				"internalType": "bytes32",
+				"internalType": "string",
 				"name": "key",
-				"type": "bytes32"
+				"type": "string"
 			}
 		],
 		"name": "getHash",
 		"outputs": [
 			{
-				"internalType": "bytes32",
+				"internalType": "string",
 				"name": "",
-				"type": "bytes32"
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",
@@ -39,17 +39,17 @@
 	{
 		"inputs": [
 			{
-				"internalType": "bytes32",
+				"internalType": "string",
 				"name": "",
-				"type": "bytes32"
+				"type": "string"
 			}
 		],
-		"name": "hashes",
+		"name": "myMapping",
 		"outputs": [
 			{
-				"internalType": "bytes32",
+				"internalType": "string",
 				"name": "",
-				"type": "bytes32"
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",
