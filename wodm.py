@@ -1,6 +1,8 @@
-import os
-from pyodm import Node
-n = Node('139.177.187.136', 8000)
-task = n.create_task(['image.png'], {'dsm': True})
-task.wait_for_completion()
-os.listdir(task.download_assets("results"))[0:2]
+import pyodm
+project_path = "myproject"
+# Add an image to the project
+image_path = "image.png"
+pyodm.add_to_project(project_path, image_path)
+
+# Process the image
+pyodm.process(project_path, tasks=["orthophoto"])
