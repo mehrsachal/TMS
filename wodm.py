@@ -1,6 +1,6 @@
-import pyodm
-
-client = pyodm.Client("http://localhost:8000", "root", "toor")
-
-project = client.projects.create(name="My Project", description="This is my project")
-print("Project created with ID:", project.id)
+import os
+from pyodm import Node
+n = Node('localhost', 8000)
+task = n.create_task([], {'dsm': True})
+task.wait_for_completion()
+os.listdir(task.download_assets("results"))[0:2]
