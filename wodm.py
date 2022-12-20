@@ -1,8 +1,9 @@
+# Description: This script is used to create a new project and add images to it.
 import pyodm
-project_path = "myproject"
-# Add an image to the project
 image_path = "image.png"
-pyodm.add_to_project(project_path, image_path)
+# Load the project
+project = pyodm.Project.from_project_path("myproject")
 
-# Process the image
-pyodm.process(project_path, tasks=["orthophoto"])
+# Add an image to the project
+image_path = "myimage.jpg"
+project.add_image(image_path)
