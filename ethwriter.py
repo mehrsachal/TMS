@@ -54,11 +54,5 @@ def get_hash(key):
 
     # return the result
     return result
-key = "bafybeiadjpljqfre5zb6xhpknl5kuyvssvhzbrkbn3j3eyhgtdsdssdthi"
 
-# add a new IPFS hash to the contract
-add_hash("1", "a")
 
-# retrieve an IPFS hash from the contract
-value = get_hash("1")
-print(value)

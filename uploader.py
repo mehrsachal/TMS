@@ -13,25 +13,27 @@ w3 = w3storage.API(token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6Z
 cidlist = {} # initialize dict
 
 
-#ITERATE WITHIN FOLDER AND UPLOAD ALL FILES
-#Upload & Write to Dict
-current_dir = str(pathlib.Path().absolute()) #Current Directory 
-folder_dir = current_dir + '\data'
+def upload():
+    #ITERATE WITHIN FOLDER AND UPLOAD ALL FILES
+    #Upload & Write to Dict
+    current_dir = str(pathlib.Path().absolute()) #Current Directory 
+    folder_dir = current_dir + '\data'
 
-for files in os.listdir(folder_dir):
-    imgpath = current_dir+'\data'+'\\' +files # jump to data folder and fetch image
+    for files in os.listdir(folder_dir):
+        imgpath = current_dir+'\data'+'\\' +files # jump to data folder and fetch image
 
-    cid = w3.post_upload((open(imgpath, 'rb'))) #upload to web3 storage
-    cidlist[cid] = files #write to dict
-        
+        cid = w3.post_upload((open(imgpath, 'rb'))) #upload to web3 storage
+        cidlist[cid] = files #write to dict
+            
 
-#CONVERT TO JSON
-json_object = json.dumps(cidlist, indent=4)
-#Get current timestamp
-gmt = time.gmtime()
-ts = str(calendar.timegm(gmt)) + '.json' #Convert timestamp to string and add relevent file extension
-#Write to json file with latest timestamp as file name in UNIX format
-with open(ts, "w") as outfile:
-	outfile.write(json_object)
-
-
+    #CONVERT TO JSON
+    json_object = json.dumps(cidlist, indent=4)
+    #Get current timestamp
+    gmt = time.gmtime()
+    ts = str(calendar.timegm(gmt)) + '.json' #Convert timestamp to string and add relevent file extension
+    #Write to json file with latest timestamp as file name in UNIX format
+    with open(ts, "w") as outfile:
+        outfile.write(json_object)
+    file  = open(ts, 'rb')
+    id = w3.post_upload(file)
+    return id
