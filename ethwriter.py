@@ -1,27 +1,13 @@
-# import the web3 library
-import web3
-import json
-
-# define the contract address
-contract_address = "0x9535eF5c9fEB73110Abd3AD6E9b8a18DCca01b6A"
-
-# connect to the Ethereum network
-w3 = web3.Web3(web3.Web3.HTTPProvider("https://sepolia.infura.io/v3/0776cf37dfb04efdacd478388c7c1dec"))
-
-# load the contract ABI
-with open("abi.json") as file:
-    abi = json.load(file)
-
-# create a contract instance
-contract = w3.eth.contract(address=contract_address, abi=abi)
-
+import web3 as w3
 # define the wallet credentials
 private_key = "6514f7a2587c45a5f938c999f9662d8476a344ebacdb36249c349e45a1d494fd"
 wallet_address = "0xa69DFece7a990B8C4A85515F62A824B5F960b90E"
-nonce = w3.eth.getTransactionCount(wallet_address)
 
-# unlock the wallet
-w3.eth.account.privateKeyToAccount(private_key)
+# create an account object from the private key
+account = w3.eth.account.from_key(private_key)
+
+# get the current transaction count for the wallet address
+nonce = w3.eth.get_transaction_count(wallet_address)
 
 # function to add a new IPFS hash to the contract
 def add_hash(key, value):
@@ -33,8 +19,8 @@ def add_hash(key, value):
         "nonce": nonce,
     })
 
-    # sign the transaction
-    signed = w3.eth.account.signTransaction(tx, private_key=private_key)
+    # sign the transaction with the account
+    signed = account.sign_transaction(tx)
 
     # send the transaction
     tx_hash = w3.eth.send_raw_transaction(signed.rawTransaction)
@@ -46,13 +32,3 @@ def add_hash(key, value):
         print("Hash added successfully!")
     else:
         print("Failed to add hash.")
-
-# function to retrieve an IPFS hash from the contract
-def get_hash(key):
-    # call the getHash function
-    result = contract.functions.getHash(key).call()
-
-    # return the result
-    return result
-
-
