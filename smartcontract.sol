@@ -1,22 +1,28 @@
-pragma solidity ^0.6.0;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
-// import the web3.storage interface
-import "https://github.com/web3-interfaces/storage/storage.sol";
+contract IPFSStorage {
+  struct Multihash {
+    string digest;
+    uint8 hashFunction;
+    uint8 size;
+  }
 
-// define a contract that implements the web3.storage interface
-contract IPFSStorage is web3.storage {
-    // define a mapping to store the IPFS hashes
-    mapping (bytes32 => bytes32) public hashes;
+  mapping(string => string) private _hashes;
 
-    // function to add a new IPFS hash to the mapping
-    function addHash(bytes32 key, bytes32 value) public {
-        // set the value at the given key in the mapping
-        hashes[key] = value;
-    }
+  function addHash(string memory key, string memory value) public {
+    require(bytes(key).length > 0, "Key cannot be empty");
+    require(bytes(value).length > 0, "Value cannot be empty");
+    _hashes[key] = value;
+  }
 
-    // function to retrieve an IPFS hash from the mapping
-    function getHash(bytes32 key) public view returns (bytes32) {
-        // return the value at the given key in the mapping
-        return hashes[key];
-    }
+  function getHash(string memory key) public view returns (string memory) {
+    require(bytes(key).length > 0, "Key cannot be empty");
+    return _hashes[key];
+  }
+
+  function removeHash(string memory key) public {
+    require(bytes(key).length > 0, "Key cannot be empty");
+    delete _hashes[key];
+  }
 }

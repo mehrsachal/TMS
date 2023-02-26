@@ -12,7 +12,20 @@
 				"type": "string"
 			}
 		],
-		"name": "sendHash",
+		"name": "addHash",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "key",
+				"type": "string"
+			}
+		],
+		"name": "removeHash",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -26,25 +39,6 @@
 			}
 		],
 		"name": "getHash",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"name": "myMapping",
 		"outputs": [
 			{
 				"internalType": "string",
